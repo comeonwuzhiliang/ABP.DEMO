@@ -81,7 +81,7 @@ namespace Acme.BookStore.EntityFrameworkCore
             builder.ConfigureTenantManagement();
 
             /* Configure your own tables/entities inside here */
-
+            builder.Ignore(typeof(BookEnumerationType));
             builder.Entity<Book>(b =>
             {
                 b.ToTable(BookStoreConsts.DbTablePrefix + "Books",
@@ -90,6 +90,9 @@ namespace Acme.BookStore.EntityFrameworkCore
                 b.Property(x => x.Name).IsRequired().HasMaxLength(128);
 
                 b.HasOne<Author>().WithMany().HasForeignKey(x => x.AuthorId).IsRequired();
+
+                b.Property(x => x.Type2)
+                .HasConversion(x => x.Id, x => Enumeration.FromValue<BookEnumerationType>(x));
             });
 
             builder.Entity<Author>(b =>

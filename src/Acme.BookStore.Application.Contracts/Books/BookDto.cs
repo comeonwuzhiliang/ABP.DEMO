@@ -13,6 +13,23 @@ namespace Acme.BookStore.Books
 
         public BookType Type { get; set; }
 
+        public int Type2 { get; set; }
+
+        public string Type2Name
+        {
+            get
+            {
+                if (Type2 < 0)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return Enumeration.FromValue<BookEnumerationType>(Type2).Name;
+                }
+            }
+        }
+
         public DateTime PublishDate { get; set; }
 
         public float Price { get; set; }
