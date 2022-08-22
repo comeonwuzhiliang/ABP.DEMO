@@ -11,6 +11,8 @@ namespace Acme.BookStore.Books
 
         public BookType Type { get; set; }
 
+        public BookEnumerationType Type2 { get; set; }
+
         public DateTime PublishDate { get; set; }
 
         public float Price { get; set; }
