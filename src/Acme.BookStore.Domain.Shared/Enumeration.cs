@@ -10,6 +10,7 @@ namespace Acme.BookStore
     {
         public string Name { get; private set; }
 
+        // At present, the int type is used first, and later it is changed to generic
         public int Id { get; private set; }
 
         protected Enumeration(int id, string name) => (Id, Name) = (id, name);

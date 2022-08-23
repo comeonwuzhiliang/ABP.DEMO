@@ -1,4 +1,22 @@
-# Extened Enumeration Class
+# Abp Extend Enumeration Class
+### Project
+
+#### Install Abp CLI
+
+```bash
+dotnet tool install -g Volo.Abp.Cli
+```
+
+#### Build
+
+Open the root directory of the project and run the following command
+
+``` bash
+./build.ps
+```
+
+
+
 ### Enumeration Class
 
 #### Base Class
@@ -85,9 +103,61 @@ protected override void OnModelCreating(ModelBuilder builder)
 
 
 
+### JsonConvert
 
+#### Newtonsoft
 
+``` C#
+ public class EnumerationClassNewtonsoftJsonConverter<TEnumeration>
+        : JsonConverter<TEnumeration>
+        where TEnumeration : Enumeration
+        {
 
+        }
+```
+
+#### System.Text.Json
+
+``` C#
+public class EnumerationClassSystemTextJsonConverter<TEnumeration>
+        : JsonConverter<TEnumeration>
+        where TEnumeration : Enumeration
+        {
+
+        }
+```
+
+#### Usage
+
+``` C#
+ public class BookDto
+ {
+     [Newtonsoft.Json.JsonConverter(typeof(EnumerationClassNewtonsoftJsonConverter<BookEnumerationType>))]
+     [System.Text.Json.Serialization.JsonConverter(typeof(EnumerationClassSystemTextJsonConverter<BookEnumerationType>))]
+     public BookEnumerationType Type2 { get; set; }
+ }
+
+ ....
+     
+ public class CreateUpdateBookDto
+ {
+     [Newtonsoft.Json.JsonConverter(typeof(EnumerationClassNewtonsoftJsonConverter<BookEnumerationType>))]
+     [System.Text.Json.Serialization.JsonConverter(typeof(EnumerationClassSystemTextJsonConverter<BookEnumerationType>))]
+     public BookEnumerationType Type2 { get; set; } = BookEnumerationType.Undefined;
+ }
+```
+
+ 
+
+### Perform
+
+![](E:\Zack\github\ABP.DEMO\docs\enumerationClassEditAndSelect.gif)
+
+### Todo List
+
+- [ ] Book edit page support enumeration class
+- [ ] Book create page support enumeration class
+- [ ] jsonOptions add jsonConverter（DI）
 
 ### Reference Resources
 

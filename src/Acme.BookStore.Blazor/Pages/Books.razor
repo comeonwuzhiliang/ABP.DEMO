@@ -21,7 +21,9 @@
                 @if (HasCreatePermission)
                 {
                     <Button Color="Color.Primary"
-                            Clicked="OpenCreateModalAsync">@L["NewBook"]</Button>
+                        Clicked="OpenCreateModalAsync">
+                        @L["NewBook"]
+                    </Button>
                 }
             </Column>
         </Row>
@@ -63,6 +65,13 @@
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="BookDto"
+                                Field="@nameof(BookDto.Type2)"
+                                Caption="Type2Test">
+                    <DisplayTemplate>
+                        @context.Type2.Name
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="BookDto"
                                 Field="@nameof(BookDto.PublishDate)"
                                 Caption="@L["PublishDate"]">
                     <DisplayTemplate>
@@ -91,7 +100,7 @@
         <Form>
             <ModalHeader>
                 <ModalTitle>@L["NewBook"]</ModalTitle>
-                <CloseButton Clicked="CloseCreateModalAsync"/>
+                <CloseButton Clicked="CloseCreateModalAsync" />
             </ModalHeader>
             <ModalBody>
                 <Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
@@ -105,14 +114,14 @@
                                     @author.Name
                                 </SelectItem>
                             }
-                            </Select>
+                        </Select>
                     </Field>
                     <Validation MessageLocalizer="@LH.Localize">
                         <Field>
                             <FieldLabel>@L["Name"]</FieldLabel>
                             <TextEdit @bind-Text="@NewEntity.Name">
                                 <Feedback>
-                                    <ValidationError/>
+                                    <ValidationError />
                                 </Feedback>
                             </TextEdit>
                         </Field>
@@ -129,22 +138,37 @@
                         </Select>
                     </Field>
                     <Field>
+                        <FieldLabel>Type2Test</FieldLabel>
+                        <Select TValue="BookEnumerationType" @bind-SelectedValue="@NewEntity.Type2">
+                            @foreach (BookEnumerationType enumerationValue in Enumeration.GetAll<BookEnumerationType>())
+                            {
+                                <SelectItem TValue="BookEnumerationType" Value="@enumerationValue">
+                                    @enumerationValue.Name
+                                </SelectItem>
+                            }
+                        </Select>
+                    </Field>
+                    <Field>
                         <FieldLabel>@L["PublishDate"]</FieldLabel>
-                        <DateEdit TValue="DateTime" @bind-Date="NewEntity.PublishDate"/>
+                        <DateEdit TValue="DateTime" @bind-Date="NewEntity.PublishDate" />
                     </Field>
                     <Field>
                         <FieldLabel>@L["Price"]</FieldLabel>
-                        <NumericEdit TValue="float" @bind-Value="NewEntity.Price"/>
+                        <NumericEdit TValue="float" @bind-Value="NewEntity.Price" />
                     </Field>
                 </Validations>
             </ModalBody>
             <ModalFooter>
                 <Button Color="Color.Secondary"
-                        Clicked="CloseCreateModalAsync">@L["Cancel"]</Button>
+                        Clicked="CloseCreateModalAsync">
+                    @L["Cancel"]
+                </Button>
                 <Button Color="Color.Primary"
                         Type="@ButtonType.Submit"
                         PreventDefaultOnSubmit="true"
-                        Clicked="CreateEntityAsync">@L["Save"]</Button>
+                        Clicked="CreateEntityAsync">
+                    @L["Save"]
+                </Button>
             </ModalFooter>
         </Form>
     </ModalContent>
@@ -156,7 +180,7 @@
         <Form>
             <ModalHeader>
                 <ModalTitle>@EditingEntity.Name</ModalTitle>
-                <CloseButton Clicked="CloseEditModalAsync"/>
+                <CloseButton Clicked="CloseEditModalAsync" />
             </ModalHeader>
             <ModalBody>
                 <Validations @ref="@EditValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
@@ -176,7 +200,7 @@
                             <FieldLabel>@L["Name"]</FieldLabel>
                             <TextEdit @bind-Text="@EditingEntity.Name">
                                 <Feedback>
-                                    <ValidationError/>
+                                    <ValidationError />
                                 </Feedback>
                             </TextEdit>
                         </Field>
@@ -193,22 +217,37 @@
                         </Select>
                     </Field>
                     <Field>
+                        <FieldLabel>Type2Test</FieldLabel>
+                        <Select TValue="BookEnumerationType" @bind-SelectedValue="@EditingEntity.Type2">
+                            @foreach (BookEnumerationType enumerationValue in Enumeration.GetAll<BookEnumerationType>())
+                            {
+                                <SelectItem TValue="BookEnumerationType" Value="@(enumerationValue)">
+                                    @enumerationValue.Name
+                                </SelectItem>
+                            }
+                        </Select>
+                    </Field>
+                    <Field>
                         <FieldLabel>@L["PublishDate"]</FieldLabel>
-                        <DateEdit TValue="DateTime" @bind-Date="EditingEntity.PublishDate"/>
+                        <DateEdit TValue="DateTime" @bind-Date="EditingEntity.PublishDate" />
                     </Field>
                     <Field>
                         <FieldLabel>@L["Price"]</FieldLabel>
-                        <NumericEdit TValue="float" @bind-Value="EditingEntity.Price"/>
+                        <NumericEdit TValue="float" @bind-Value="EditingEntity.Price" />
                     </Field>
                 </Validations>
             </ModalBody>
             <ModalFooter>
                 <Button Color="Color.Secondary"
-                        Clicked="CloseEditModalAsync">@L["Cancel"]</Button>
+                        Clicked="CloseEditModalAsync">
+                    @L["Cancel"]
+                </Button>
                 <Button Color="Color.Primary"
                         Type="@ButtonType.Submit"
                         PreventDefaultOnSubmit="true"
-                        Clicked="UpdateEntityAsync">@L["Save"]</Button>
+                        Clicked="UpdateEntityAsync">
+                    @L["Save"]
+                </Button>
             </ModalFooter>
         </Form>
     </ModalContent>

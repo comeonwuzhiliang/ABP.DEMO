@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acme.BookStore.JsonConverters;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Acme.BookStore.Books
@@ -13,6 +14,10 @@ namespace Acme.BookStore.Books
 
         [Required]
         public BookType Type { get; set; } = BookType.Undefined;
+
+        [Newtonsoft.Json.JsonConverter(typeof(EnumerationClassNewtonsoftJsonConverter<BookEnumerationType>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(EnumerationClassSystemTextJsonConverter<BookEnumerationType>))]
+        public BookEnumerationType Type2 { get; set; } = BookEnumerationType.Undefined;
 
         [Required]
         [DataType(DataType.Date)]
