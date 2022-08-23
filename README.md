@@ -17,6 +17,17 @@ Open the root directory of the project and run the following command
 
 
 
+#### Run
+
+run host and blazor project
+
+#### Login
+
+1. UserName: admin
+2. Password: 1q2w3E*
+
+
+
 ### Enumeration Class
 
 #### Base Class
@@ -155,13 +166,13 @@ The location of the GIF file is in the docs directory
 
 ### Todo List
 
-- [ ] Book edit page support enumeration class
-- [ ] Book create page support enumeration class
-- [ ] jsonOptions add jsonConverter（DI）
+- [ ] 🥈Book edit page support enumeration class
+- [ ] 🥉Book create page support enumeration class
+- [ ] 🥇jsonOptions add jsonConverter（DI）
 
 ### Reference Resources
 
-1. basic code copy from [abpframework/abp-samples/BookStore-Mvc-EfCore](https://github.com/abpframework/abp-samples/tree/master/BookStore-Mvc-EfCore)
+1. basic code copy from [abpframework/abp-samples/BookStore-Blazor-EfCore](https://github.com/abpframework/abp-samples/tree/master/BookStore-Blazor-EfCore)
 2. [microsoft document](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/enumeration-classes-over-enum-types)
 
 
