@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Reflection;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+using Acme.BookStore.Books;
+using Acme.BookStore.JsonConverters;
 using Shouldly;
 using Volo.Abp.Identity;
 using Xunit;
@@ -19,6 +23,22 @@ namespace Acme.BookStore.Samples
         {
             _identityUserRepository = GetRequiredService<IIdentityUserRepository>();
             _identityUserManager = GetRequiredService<IdentityUserManager>();
+        }
+
+        [Fact]
+        public void VVV()
+        {
+            BookDto book = new BookDto()
+            {
+                Type2 = Books.BookEnumerationType.Biography
+            };
+
+            var rrr = System.Text.Json.JsonSerializer.Serialize(book);
+            var rrrd = System.Text.Json.JsonSerializer.Deserialize<BookDto>(rrr);
+
+            var ddd = Newtonsoft.Json.JsonConvert.SerializeObject(book);
+            var dddd = Newtonsoft.Json.JsonConvert.DeserializeObject<BookDto>(rrr);
+
         }
 
         [Fact]

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Acme.BookStore.JsonConverters;
+using System;
+using System.ComponentModel.DataAnnotations;
 using Volo.Abp.Application.Dtos;
 
 namespace Acme.BookStore.Books
@@ -13,22 +15,13 @@ namespace Acme.BookStore.Books
 
         public BookType Type { get; set; }
 
-        public int Type2 { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(EnumerationClassNewtonsoftJsonConverter<BookEnumerationType>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(EnumerationClassSystemTextJsonConverter<BookEnumerationType>))]
+        public BookEnumerationType Type2 { get; set; }
 
-        public string Type2Name
-        {
-            get
-            {
-                if (Type2 < 0)
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return Enumeration.FromValue<BookEnumerationType>(Type2).Name;
-                }
-            }
-        }
+        public int Type2Value => Type2?.Id ?? default;
+
+        public string Type2Name => Type2?.Name ?? default;
 
         public DateTime PublishDate { get; set; }
 

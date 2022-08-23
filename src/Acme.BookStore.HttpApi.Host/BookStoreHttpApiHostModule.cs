@@ -27,6 +27,9 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.AspNetCore.Mvc;
+using Acme.BookStore.JsonConverters;
+using Acme.BookStore.Books;
 
 namespace Acme.BookStore
 {
@@ -59,6 +62,7 @@ namespace Acme.BookStore
             ConfigureVirtualFileSystem(context);
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context);
+            ConfigJsonOptions(context);
         }
 
         private void ConfigureBundles()
@@ -133,7 +137,7 @@ namespace Acme.BookStore
             context.Services.AddSwaggerGen(
                 options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo {Title = "BookStore API", Version = "v1"});
+                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "BookStore API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                 });
         }
@@ -176,6 +180,16 @@ namespace Acme.BookStore
                         .AllowCredentials();
                 });
             });
+        }
+
+
+        private void ConfigJsonOptions(ServiceConfigurationContext context)
+        {
+            // todo: 使用反射进行全部枚举类的注入
+            //Configure<JsonOptions>(options =>
+            //{
+            //    options.JsonSerializerOptions.Converters.Add(new EnumerationClassSystemTextJsonConverter<BookEnumerationType>());
+            //});
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
