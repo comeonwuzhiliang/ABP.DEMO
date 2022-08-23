@@ -12,7 +12,7 @@ dotnet tool install -g Volo.Abp.Cli
 Open the root directory of the project and run the following command
 
 ``` bash
-./build.ps
+.\build.ps1
 ```
 
 
