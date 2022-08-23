@@ -150,8 +150,8 @@ public class EnumerationClassSystemTextJsonConverter<TEnumeration>
  
 
 ### Perform
-
-![](E:\Zack\github\ABP.DEMO\docs\enumerationClassEditAndSelect.gif)
+The location of the GIF file is in the docs directory
+![](docs\enumerationClassEditAndSelect.gif)
 
 ### Todo List
 
