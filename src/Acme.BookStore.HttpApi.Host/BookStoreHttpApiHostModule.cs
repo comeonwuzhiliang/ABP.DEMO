@@ -33,6 +33,7 @@ using Acme.BookStore.Books;
 using Acme.BookStore.Extensions;
 using Volo.Abp.Json;
 using Volo.Abp.Json.SystemTextJson;
+using Volo.Abp.Json.Newtonsoft;
 
 namespace Acme.BookStore
 {
@@ -188,9 +189,23 @@ namespace Acme.BookStore
 
         private void ConfigJsonOptions(ServiceConfigurationContext context)
         {
+            // for controller
             Configure<JsonOptions>(options =>
             {
                 options.JsonSerializerOptions.AddEnumerationJsonConverters(typeof(BookEnumerationType));
+            });
+
+            // for System.Text.Json
+            Configure<AbpSystemTextJsonSerializerOptions>(options =>
+            {
+                options.JsonSerializerOptions.AddEnumerationJsonConverters(typeof(BookEnumerationType));
+            });
+
+            // for Newtonsoft Json
+            context.Services.AddEnumerationClassJsonConverters(typeof(BookEnumerationType));
+
+            Configure<AbpNewtonsoftJsonSerializerOptions>(options => {
+                options.Converters.AddEnumerationJsonConverters(typeof(BookEnumerationType));
             });
         }
 
