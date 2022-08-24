@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Acme.BookStore.Domain.Shared\Acme.BookStore.Domain.Shared.csproj" />
+    <ProjectReference Include="..\..\src\Acme.BookStore.Domain.Shared\Acme.BookStore.Domain.Shared.csproj" />
   </ItemGroup>
 
 </Project>

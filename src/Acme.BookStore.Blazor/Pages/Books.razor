@@ -68,7 +68,7 @@
                                 Field="@nameof(BookDto.Type2)"
                                 Caption="Type2Test">
                     <DisplayTemplate>
-                        @context.Type2.Name
+                        @context.Type2?.Name
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="BookDto"

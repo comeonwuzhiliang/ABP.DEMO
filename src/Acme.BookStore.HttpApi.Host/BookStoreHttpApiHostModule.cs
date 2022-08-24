@@ -30,6 +30,9 @@ using Volo.Abp.VirtualFileSystem;
 using Microsoft.AspNetCore.Mvc;
 using Acme.BookStore.JsonConverters;
 using Acme.BookStore.Books;
+using Acme.BookStore.Extensions;
+using Volo.Abp.Json;
+using Volo.Abp.Json.SystemTextJson;
 
 namespace Acme.BookStore
 {
@@ -185,11 +188,10 @@ namespace Acme.BookStore
 
         private void ConfigJsonOptions(ServiceConfigurationContext context)
         {
-            // todo: 使用反射进行全部枚举类的注入
-            //Configure<JsonOptions>(options =>
-            //{
-            //    options.JsonSerializerOptions.Converters.Add(new EnumerationClassSystemTextJsonConverter<BookEnumerationType>());
-            //});
+            Configure<JsonOptions>(options =>
+            {
+                options.JsonSerializerOptions.AddEnumerationJsonConverters(typeof(BookEnumerationType));
+            });
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
