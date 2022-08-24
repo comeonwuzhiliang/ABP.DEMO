@@ -138,7 +138,7 @@ public class EnumerationClassSystemTextJsonConverter<TEnumeration>
         }
 ```
 
-#### JsonConvertAttribute Usage
+#### JsonConverterAttribute Usage
 
 ``` C#
  public class BookDto
@@ -200,7 +200,7 @@ The location of the GIF file is in the docs directory
 - [x] ⭐⭐⭐⭐jsonOptions add system text jsonConverter（DI）
 - [ ] ⭐⭐⭐ jsonOptions add newtonsoft jsonConverter（DI）
 - [ ] ⭐⭐Book edit page support enumeration class
-- [ ] ⭐Book create page support enumeration class
+- [ ] ⭐⭐Book create page support enumeration class
 
 ### Reference Resources
 
