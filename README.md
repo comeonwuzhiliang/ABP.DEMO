@@ -138,7 +138,7 @@ public class EnumerationClassSystemTextJsonConverter<TEnumeration>
         }
 ```
 
-#### JsonConverterAttribute Usage
+#### JsonConverterAttribute For All Usage Example
 
 ``` C#
  public class BookDto
@@ -158,11 +158,9 @@ public class EnumerationClassSystemTextJsonConverter<TEnumeration>
  }
 ```
 
- 
 
-You can use dependency injection instead of JsonConverterAttribute
 
-#### DependencyInjection Usage
+#### DependencyInjection For Controller Usage Example
 
 ``` C#
 ....Dto Part....
@@ -177,6 +175,61 @@ Configure<JsonOptions>(options =>
     options.JsonSerializerOptions.AddEnumerationJsonConverters(typeof(BookEnumerationType));
     options.JsonSerializerOptions.AddEnumerationJsonConverters(typeof(...));
 );
+```
+
+
+
+#### DependencyInjection For AbpSystemTextJsonSerializer Usage Example
+
+``` C#
+....Dto Part....
+public class BookDto
+{
+    public BookEnumerationType Type2 { get; set; }
+}
+
+....DI Part....
+ Configure<AbpSystemTextJsonSerializerOptions>(options =>
+ {                                               	options.JsonSerializerOptions.AddEnumerationJsonConverters(typeof(BookEnumerationType));
+ });
+
+ ....Application Part....
+ public class HomeService
+ {
+     public HomeService(AbpSystemTextJsonSerializerProvider abpSystemTextJsonSerializerProvider)
+     {
+         var abpSystemTextJsonSerializerProviderStr = _abpSystemTextJsonSerializerProvider.Serialize(new BookDto { Type2 = BookEnumerationType.Biography });
+     }
+ }
+     
+```
+
+
+
+#### DependencyInjection For AbpNewtonsoftJsonSerializer Usage Example
+
+``` C#
+....Dto Part....
+public class BookDto
+{
+    public BookEnumerationType Type2 { get; set; }
+}
+
+....DI Part....
+ context.Services.AddEnumerationClassJsonConverters(typeof(BookEnumerationType));
+ Configure<AbpSystemTextJsonSerializerOptions>(options =>
+ {                                               	 options.Converters.AddEnumerationJsonConverters(typeof(BookEnumerationType));
+ });
+
+ ....Application Part....
+ public class HomeService
+ {
+     public HomeService(AbpNewtonsoftJsonSerializerProvider abpNewtonsoftJsonSerializerProvider)
+     {
+         var abpNewtonsoftJsonSerializerProviderStr = _abpNewtonsoftJsonSerializerProvider.Serialize(new BookDto { Type2 = BookEnumerationType.Biography });
+     }
+ }
+     
 ```
 
 
@@ -198,7 +251,7 @@ The location of the GIF file is in the docs directory
 ### Todo List
 
 - [x] ⭐⭐⭐⭐jsonOptions add system text jsonConverter（DI）
-- [ ] ⭐⭐⭐ jsonOptions add newtonsoft jsonConverter（DI）
+- [x] ⭐⭐⭐ jsonOptions add newtonsoft jsonConverter（DI）
 - [ ] ⭐⭐Book edit page support enumeration class
 - [ ] ⭐⭐Book create page support enumeration class
 

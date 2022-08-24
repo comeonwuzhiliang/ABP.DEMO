@@ -202,6 +202,7 @@ namespace Acme.BookStore
             });
 
             // for Newtonsoft Json
+            // 因为AbpNewtonsoftJsonSerializerProvider的构造函数里面需要JsonConvert的注入。
             context.Services.AddEnumerationClassJsonConverters(typeof(BookEnumerationType));
 
             Configure<AbpNewtonsoftJsonSerializerOptions>(options => {
