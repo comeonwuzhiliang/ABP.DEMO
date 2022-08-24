@@ -9,7 +9,7 @@ dotnet tool install -g Volo.Abp.Cli
 
 #### Build
 
-Open the root directory of the project and run the following command
+Open the root directory of the project and run the following command for init database structure,basic data and install lib
 
 ``` bash
 .\build.ps1
@@ -159,6 +159,16 @@ public class EnumerationClassSystemTextJsonConverter<TEnumeration>
 ```
 
  
+
+### XUnit Test
+
+#### System.Text.Json
+
+``` bash
+dotnet test .\test\Extension.Test\Extension.Test\Extension.Test.csproj
+```
+
+
 
 ### Perform
 The location of the GIF file is in the docs directory

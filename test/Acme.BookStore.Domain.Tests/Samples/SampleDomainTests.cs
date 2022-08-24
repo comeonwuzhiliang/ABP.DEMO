@@ -26,22 +26,6 @@ namespace Acme.BookStore.Samples
         }
 
         [Fact]
-        public void VVV()
-        {
-            BookDto book = new BookDto()
-            {
-                Type2 = Books.BookEnumerationType.Biography
-            };
-
-            var rrr = System.Text.Json.JsonSerializer.Serialize(book);
-            var rrrd = System.Text.Json.JsonSerializer.Deserialize<BookDto>(rrr);
-
-            var ddd = Newtonsoft.Json.JsonConvert.SerializeObject(book);
-            var dddd = Newtonsoft.Json.JsonConvert.DeserializeObject<BookDto>(rrr);
-
-        }
-
-        [Fact]
         public async Task Should_Set_Email_Of_A_User()
         {
             IdentityUser adminUser;
