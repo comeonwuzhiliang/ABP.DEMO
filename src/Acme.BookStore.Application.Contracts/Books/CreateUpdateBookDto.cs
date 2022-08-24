@@ -15,8 +15,8 @@ namespace Acme.BookStore.Books
         [Required]
         public BookType Type { get; set; } = BookType.Undefined;
 
-        [Newtonsoft.Json.JsonConverter(typeof(EnumerationClassNewtonsoftJsonConverter<BookEnumerationType>))]
-        [System.Text.Json.Serialization.JsonConverter(typeof(EnumerationClassSystemTextJsonConverter<BookEnumerationType>))]
+        //[Newtonsoft.Json.JsonConverter(typeof(EnumerationClassNewtonsoftJsonConverter<BookEnumerationType>))]
+        //[System.Text.Json.Serialization.JsonConverter(typeof(EnumerationClassSystemTextJsonConverter<BookEnumerationType>))]
         public BookEnumerationType Type2 { get; set; } = BookEnumerationType.Undefined;
 
         [Required]

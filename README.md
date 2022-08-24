@@ -114,7 +114,7 @@ protected override void OnModelCreating(ModelBuilder builder)
 
 
 
-### JsonConvert
+### JsonConverter
 
 #### Newtonsoft
 
@@ -138,7 +138,7 @@ public class EnumerationClassSystemTextJsonConverter<TEnumeration>
         }
 ```
 
-#### Usage
+#### JsonConvertAttribute Usage
 
 ``` C#
  public class BookDto
@@ -160,12 +160,33 @@ public class EnumerationClassSystemTextJsonConverter<TEnumeration>
 
  
 
-### XUnit Test
+You can use dependency injection instead of JsonConverterAttribute
+
+#### DependencyInjection Usage
+
+``` C#
+....Dto Part....
+public class BookDto
+{
+    public BookEnumerationType Type2 { get; set; }
+}
+
+....DI Part....
+Configure<JsonOptions>(options =>
+{   
+    options.JsonSerializerOptions.AddEnumerationJsonConverters(typeof(BookEnumerationType));
+    options.JsonSerializerOptions.AddEnumerationJsonConverters(typeof(...));
+);
+```
+
+
+
+### Test Case
 
 #### System.Text.Json
 
 ``` bash
-dotnet test .\test\Extension.Test\Extension.Test\Extension.Test.csproj
+dotnet test .\test\Extension.Test\Extension.Test.csproj
 ```
 
 
@@ -176,9 +197,10 @@ The location of the GIF file is in the docs directory
 
 ### Todo List
 
-- [ ] 🥈Book edit page support enumeration class
-- [ ] 🥉Book create page support enumeration class
-- [ ] 🥇jsonOptions add jsonConverter（DI）
+- [x] ⭐⭐⭐⭐jsonOptions add system text jsonConverter（DI）
+- [ ] ⭐⭐⭐ jsonOptions add newtonsoft jsonConverter（DI）
+- [ ] ⭐⭐Book edit page support enumeration class
+- [ ] ⭐Book create page support enumeration class
 
 ### Reference Resources
 
